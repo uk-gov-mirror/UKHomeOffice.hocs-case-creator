@@ -58,7 +58,7 @@ public class UKVIComplaintData implements ComplaintData {
                 correspondents.add(applicantCorrespondent);
             } else if (applicantType.equals("AGENT")) {
                 ComplaintCorrespondent applicantCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_APPLICANT_NAME), "COMPLAINANT");
-                ComplaintCorrespondent agentCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_AGENT_NAME), "THIRD PARTY REPRESENTATIVE");
+                ComplaintCorrespondent agentCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_AGENT_NAME), "TPR");
                 optionalString(ctx, AGENT_AGENT_EMAIL).ifPresent(agentCorrespondent::setEmail);
                 correspondents.add(applicantCorrespondent);
                 correspondents.add(agentCorrespondent);
