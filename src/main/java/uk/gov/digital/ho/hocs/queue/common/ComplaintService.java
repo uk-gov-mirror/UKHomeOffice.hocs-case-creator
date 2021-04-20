@@ -13,7 +13,6 @@ import uk.gov.digital.ho.hocs.client.workflow.dto.CreateCaseRequest;
 import uk.gov.digital.ho.hocs.client.workflow.dto.CreateCaseResponse;
 import uk.gov.digital.ho.hocs.client.workflow.dto.DocumentSummary;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
@@ -93,6 +92,8 @@ public class ComplaintService {
             workflowClient.advanceCase(caseUUID, stageForCaseUUID, complaintType);
 
             log.info("createComplaint, case advanced for complaintType : caseUUID : {}", caseUUID);
+        } else {
+            log.info("createComplaint, no correspondents added to case : caseUUID : {}", caseUUID);
         }
 
         log.info("createComplaint, completed : caseUUID : {}", caseUUID);

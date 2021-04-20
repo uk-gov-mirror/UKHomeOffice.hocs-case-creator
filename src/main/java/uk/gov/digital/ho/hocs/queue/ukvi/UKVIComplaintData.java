@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import uk.gov.digital.ho.hocs.client.casework.dto.ComplaintCorrespondent;
 import uk.gov.digital.ho.hocs.document.JSONToSimpleTextConverter;
 import uk.gov.digital.ho.hocs.queue.common.ComplaintData;
+import uk.gov.digital.ho.hocs.queue.common.CorrespondentType;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -52,13 +53,13 @@ public class UKVIComplaintData implements ComplaintData {
         try {
             String applicantType = ctx.read(APPLICANT_TYPE);
             if (applicantType.equals("APPLICANT")) {
-                ComplaintCorrespondent applicantCorrespondent = new ComplaintCorrespondent(ctx.read(APPLICANT_APPLICANT_NAME), "COMPLAINANT");
+                ComplaintCorrespondent applicantCorrespondent = new ComplaintCorrespondent(ctx.read(APPLICANT_APPLICANT_NAME), CorrespondentType.COMPLAINANT);
                 optionalString(ctx, APPLICANT_APPLICANT_EMAIL).ifPresent(applicantCorrespondent::setEmail);
                 optionalString(ctx, APPLICANT_APPLICANT_PHONE).ifPresent(applicantCorrespondent::setTelephone);
                 correspondents.add(applicantCorrespondent);
             } else if (applicantType.equals("AGENT")) {
-                ComplaintCorrespondent applicantCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_APPLICANT_NAME), "COMPLAINANT");
-                ComplaintCorrespondent agentCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_AGENT_NAME), "TPR");
+                ComplaintCorrespondent applicantCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_APPLICANT_NAME), CorrespondentType.COMPLAINANT);
+                ComplaintCorrespondent agentCorrespondent = new ComplaintCorrespondent(ctx.read(AGENT_AGENT_NAME), CorrespondentType.THIRD_PARTY_REP);
                 optionalString(ctx, AGENT_AGENT_EMAIL).ifPresent(agentCorrespondent::setEmail);
                 correspondents.add(applicantCorrespondent);
                 correspondents.add(agentCorrespondent);

@@ -3,6 +3,7 @@ package uk.gov.digital.ho.hocs.queue.ukvi;
 import org.junit.Test;
 import uk.gov.digital.ho.hocs.client.casework.dto.ComplaintCorrespondent;
 import uk.gov.digital.ho.hocs.queue.common.ComplaintData;
+import uk.gov.digital.ho.hocs.queue.common.CorrespondentType;
 import uk.gov.digital.ho.hocs.queue.ukvi.UKVIComplaintData;
 
 import java.time.LocalDate;
@@ -33,7 +34,7 @@ public class UKVIComplaintDataTest {
         assertTrue(correspondents.size() == 1);
 
         ComplaintCorrespondent ukviComplaintApplicantCorrespondent = correspondents.get(0);
-        assertEquals("COMPLAINANT", ukviComplaintApplicantCorrespondent.getType());
+        assertEquals(CorrespondentType.COMPLAINANT, ukviComplaintApplicantCorrespondent.getType());
         assertEquals("occaecat Lorem", ukviComplaintApplicantCorrespondent.getFullname());
         assertEquals("sss@uevptde.com", ukviComplaintApplicantCorrespondent.getEmail());
         assertEquals("0114 4960002", ukviComplaintApplicantCorrespondent.getTelephone());
@@ -46,7 +47,7 @@ public class UKVIComplaintDataTest {
         assertTrue(correspondents.size() == 1);
 
         ComplaintCorrespondent ukviComplaintApplicantCorrespondent = correspondents.get(0);
-        assertEquals("COMPLAINANT", ukviComplaintApplicantCorrespondent.getType());
+        assertEquals(CorrespondentType.COMPLAINANT, ukviComplaintApplicantCorrespondent.getType());
         assertEquals("occaecat Lorem", ukviComplaintApplicantCorrespondent.getFullname());
     }
 
@@ -57,11 +58,11 @@ public class UKVIComplaintDataTest {
         assertTrue(correspondents.size() == 2);
 
         ComplaintCorrespondent applicantCorrespondent = correspondents.get(0);
-        assertEquals("COMPLAINANT", applicantCorrespondent.getType());
+        assertEquals(CorrespondentType.COMPLAINANT, applicantCorrespondent.getType());
         assertEquals("tempor", applicantCorrespondent.getFullname());
 
         ComplaintCorrespondent agentCorrespondent = correspondents.get(1);
-        assertEquals("TPR", agentCorrespondent.getType());
+        assertEquals(CorrespondentType.THIRD_PARTY_REP, agentCorrespondent.getType());
         assertEquals("sint mollit est", agentCorrespondent.getFullname());
         assertEquals("64E@fmZgjGfpG.cfb", agentCorrespondent.getEmail());
     }
